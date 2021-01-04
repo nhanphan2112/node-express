@@ -33,11 +33,12 @@ partnerRouter
 		res.end("Will send all the partners to you");
 	})
 	.post((req, res) => {
-		res.end(`Will add the partnerId ${req.body.name} with description: ${req.body.description}`);
+		res.statusCode = 403;
+		res.end("POST operation not supported on /partners/:partnerId");
 	})
 	.put((req, res) => {
-		res.statusCode = 403;
-		res.end("PUT operation not supported on /partners/:partnerId");
+		res.write(`Updating the partner: ${req.params.partnerId}\n`);
+		res.end(`Will add the partner: ${req.body.name} with description: ${req.body.description}`);
 	})
 	.delete((req, res) => {
 		res.end("Deleting all partners");
